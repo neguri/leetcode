@@ -1,0 +1,59 @@
+class Solution {
+public:
+    
+    bool isVowel(char c) {
+        bool ret = false;
+        switch (c) {
+            case  'a':
+            case  'e':
+            case  'i':
+            case  'o':
+            case  'u':
+            case  'A':
+            case  'E':
+            case  'I':
+            case  'O':
+            case  'U':                
+                ret = true;
+                break;
+                
+            default:
+                ret = false;
+        } 
+           return ret;
+    }
+    
+    string reverseVowels(string s) {
+       
+        int first = 0; 
+        int last = s.length()-1;
+        char c;
+        
+        while(first <= last) {
+            
+          while( isVowel(s[first]) == false) {
+              first++;
+          }
+            
+          while(isVowel(s[last]) == false) {
+              last--;
+          }
+            
+           //cout<<first<<" A "<<last<<endl;
+            
+            if(first >= last) break;
+               
+            c = s[first];
+            s[first] = s[last];
+            s[last] = c;
+            
+            first++; last--;
+
+            //cout<<first<<" B "<<last<<endl;
+
+            
+        }
+
+        return s;
+    }
+};
