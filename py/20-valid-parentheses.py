@@ -1,28 +1,46 @@
 class Solution:
     
-    def __init__(self):
-        self.idx = 0
-        self.l = []
-
-
-    def push(self, a):
-        self.idx +=1
-        self.l[self.idx] = a
-        self.idx +=1
-    def pop(self):
-        self.idx -= 1
-        r = [self.idx]
-        return r
-
-    def isValid(self, s):
+     def isValid(self, s):
         """
         :type s: str
         :rtype: bool
         """
 
+        if len(s) %2 == 1:
+            return False
+        
+        d = []
+        for i in range(len(s)):
+            if s[i] == '(' or s[i] == '[' or s[i] == '{':
+                d.append(s[i])
+            if s[i] == ')':
+                if len(d) is 0:
+                    return False
+
+                if d.pop() is not '(':
+                    return False
+
+            if s[i] == ']':
+                if len(d) is 0:
+                    return False
+
+                if d.pop() is not '[':
+                    return False
+
+            if s[i] == '}':
+                if len(d) is 0:
+                    return False
+
+                if d.pop() is not '{':
+                    return False
+        if len(d) is 0:
+            return True
+        else:
+            return False
 
 s = Solution()
-s.push(1)
-s.push(2)
-print(s.pop())
-print(s.pop())
+print (s.isValid("[]()"))
+print (s.isValid("["))
+print (s.isValid("]["))
+print (s.isValid("(("))
+print (s.isValid("{[}]"))
