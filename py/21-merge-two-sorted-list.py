@@ -12,32 +12,19 @@ class Solution:
         :type l2: ListNode
         :rtype: ListNode
         """
-        r = ListNode(0)
-        rtype = r
+        rtype = tail =  ListNode(0)
+
 
         while l1 is not None and l2 is not None:
             if l1.val < l2.val:
-                if r is None:
-                    r = l1
-                    rtype = r
-                else:
-                    r.next = l1
-                    r = r.next
-                l1 = l1.next
+                tail.next, l1 = l1, l1.next
             else:
-                if r is None:
-                    r = l2
-                    rtype =r
-                else:
-                    r.next= l2
-                    r = r.next
-                l2 = l2.next
-        if l1 is None:
-            r.next = l2
-        else:
-            r.next = l1
-        rtype = rtype.next
-        return rtype
+                tail.next, l2 = l2, l2.next
+            tail = tail.next
+        
+        tail.next = l1 or l2
+
+        return rtype.next
 
 
 l1 = ListNode(1)
@@ -52,13 +39,13 @@ l2.next.next = ListNode(4)
 
 def traverse(node):
     while node is not None:
-        print (node.val)
+        print(node.val, end=' ')
         node = node.next
 
-traverse(l1)
-traverse(l2)
+#traverse(l1)
+#traverse(l2)
 
-print("-----------------")
+#print("-----------------")
 sol = Solution()
 r = sol.mergeTwoLists(l1,l2)
 traverse(r)
