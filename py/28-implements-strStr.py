@@ -29,6 +29,12 @@ class Solution:
 
         return -1
 
+    def strstr(self, haystack, needle):
+
+        if needle in haystack:
+            return haystack.index(needle)
+        return -1
+
 
 
 if __name__ == "__main__":
@@ -38,3 +44,10 @@ if __name__ == "__main__":
     assert Solution().strStr("aaa","aaaa") == -1
     assert Solution().strStr("bbaa","aab") == -1    
     assert Solution().strStr("mississippi","issip") == 4
+
+    assert Solution().strstr("Hello","ll") == 2
+    assert Solution().strstr("aaaaa","bba") == -1
+    assert Solution().strstr("Hello","") == 0
+    assert Solution().strstr("aaa","aaaa") == -1
+    assert Solution().strstr("bbaa","aab") == -1    
+    assert Solution().strstr("mississippi","issip") == 4
